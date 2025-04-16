@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="hms_patient_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="patient">
+                    <div class="container-fluid patient_report">
+
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h1 class="text-danger text-right">Patient Status Report</h1>
+                            <div>
+                                <img t-if="patient.image" 
+                                     t-att-src="'/web/image/%s/%s/image' % (patient._name, patient.id)" 
+                                     alt="Patient Image" 
+                                     class="img-thumbnail" 
+                                     style="width: 100px; height: 100px;"/>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mb-4">
+                            <div class="w-50">
+                                <p><strong>Name:</strong> <span t-field="patient.first_name"/> <span t-field="patient.last_name"/></p>
+                                <p><strong>Age:</strong> <span t-field="patient.age"/></p>
+                                <p><strong>Department:</strong> <span t-field="patient.department_id.name"/></p>
+                                <p><strong>Doctors:</strong> 
+                                    <t t-foreach="patient.doctor_ids" t-as="doctor">
+                                        <span t-field="doctor.first_name"/>
+                                        <t t-if="not doctor_last">,</t>
+                                    </t>
+                                </p>
+                            </div>
+                            <div class="w-50">
+                                <p><strong>Birth date:</strong> <span t-field="patient.birth_date"/></p>
+                                <p><strong>PCR:</strong> <span t-field="patient.cr_ratio"/></p>
+                                <p><strong>Blood Type:</strong> <span t-field="patient.blood_type"/></p>
+                                <p><strong>Email:</strong> <span t-field="patient.email"/></p>
+                            </div>
+                        </div>
+
+                        <h2 class="text-center text-danger mb-3">Log History</h2>
+                        <div class="d-flex justify-content-center">
+                            <table class="table table-bordered w-50 mb-4">
+                                <thead class="bg-primary text-white">
+                                    <tr>
+                                        <th class="text-center">User</th>
+                                        <th class="text-center">Date</th>
+                                        <th class="text-center">Info</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="patient.log_history_ids" t-as="log">
+                                        <tr>
+                                            <td class="text-center"><span t-field="log.create_uid.name"/></td>
+                                            <td class="text-center"><span t-field="log.create_date"/></td>
+                                            <td class="text-center"><span t-field="log.description"/></td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <record id="hms_patient_report" model="ir.actions.report">
+        <field name="name">Patient Report</field>
+        <field name="model">hms.patient</field>
+        <field name="report_type">qweb-html</field>
+        <field name="binding_model_id" ref="model_hms_patient"/>
+        <field name="binding_type">report</field>
+        <field name="report_name">hms.hms_patient_template</field>
+    </record>
+
+</odoo>

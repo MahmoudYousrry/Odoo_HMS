@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="hms.OrdersListTemplate">
+            <div class="card shadow p-4 overflow-auto" style="height: 99vh; ">
+                <h3 class="mb-4">🧑‍⚕️ <strong>Patients List</strong></h3>
+    
+                <t t-if="!state.patients.length">
+                    <div class="alert alert-info">No patients found.</div>
+                </t>
+    
+                <div class="row">
+                    <t t-foreach="state.patients" t-as="patient" t-key="patient.id">
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 border-primary ">
+                                <div class="card-body">
+                                    <h5 class="card-title text-primary">
+                                        <i class="fa fa-user-md me-2"></i> <t t-esc="patient.name"/>
+                                    </h5>
+                                    <p class="card-text mb-1">🧬 Age: <t t-esc="patient.age"/></p>
+                                    <p class="card-text mb-1">📧 Email: <t t-esc="patient.email || 'N/A'"/></p>
+                                    <p class="card-text">📍 Status: <span class="badge bg-secondary"><t t-esc="patient.state"/></span></p>
+    
+                                    <!-- Buttons -->
+                                    <div class="mt-3 d-flex gap-2">
+                                        <button class="btn btn-sm btn-outline-primary" t-on-click="() => this.viewPatient(patient.id)">
+                                            🔍 View
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-danger" t-on-click="() => this.deletePatient(patient.id)">
+                                            🗑️ Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+
+
+        <div class="modal fade" id="patientModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content shadow">
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title">👤 Patient Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
+                    </div>
+                    <div class="modal-body">
+                        <t t-if="state.selectedPatient">
+                            <p><strong>👨‍⚕️ First Name:</strong> <t t-esc="state.selectedPatient.first_name || 'N/A'"/></p>
+                            <p><strong>👨‍⚕️ Last Name:</strong> <t t-esc="state.selectedPatient.last_name || 'N/A'"/></p>
+                            <p><strong>📧 Email:</strong> <t t-esc="state.selectedPatient.email || 'N/A'"/></p>
+                            <p><strong>📅 Birth Date:</strong> <t t-esc="state.selectedPatient.birth_date || 'N/A'"/></p>
+                            <p><strong>📜 Medical History:</strong> <span t-raw="state.selectedPatient.history || 'N/A'"/></p> <!-- t-raw عشان يعرض HTML -->
+                            <p><strong>🧬 PCR Test:</strong> <t t-esc="state.selectedPatient.pcr ? 'Yes' : 'No'"/></p>
+                            <p><strong>📊 CR Ratio:</strong> <t t-esc="state.selectedPatient.cr_ratio || 'N/A'"/></p>
+                            <p><strong>🩺 Blood Type:</strong> <t t-esc="state.selectedPatient.blood_type || 'N/A'"/></p>
+
+                            <p><strong>🖼️ Profile Image:</strong></p>
+                            <t t-if="state.selectedPatient.image">
+                                <img t-att-src="'data:image/jpeg;base64,' + state.selectedPatient.image" style="max-width: 100px; max-height: 100px;" alt="Profile Image"/>
+                            </t>
+                            <t t-else="">
+                                <span>No image available</span>
+                            </t>
+                            <p><strong>🏠 Address:</strong> <t t-esc="state.selectedPatient.address || 'N/A'"/></p>
+                            <p><strong>🧬 Age:</strong> <t t-esc="state.selectedPatient.age || 'N/A'"/></p>
+                            <p><strong>🏥 Department:</strong> <t t-esc="state.selectedPatient.department_name || 'N/A'"/></p>
+                            <p><strong>📏 Department Capacity:</strong> <t t-esc="state.selectedPatient.department_capacity || 'N/A'"/></p>
+
+                            <p><strong>👩‍⚕️ Doctors:</strong></p>
+                            <t t-if="state.selectedPatient.doctor_ids &amp;&amp; state.selectedPatient.doctor_ids.length > 0">
+                                <ul>
+                                    <t t-foreach="state.selectedPatient.doctor_ids" t-as="doctor" t-key="doctor[0]">
+                                        <li><t t-esc="doctor[1]"/></li> 
+                                    </t>
+                                </ul>
+                            </t>
+                            <t t-else="">
+                                <span>No doctors assigned</span>
+                            </t>
+
+                            <p><strong>📋 Log History:</strong></p>
+                            <t t-if="state.selectedPatient.log_history_ids &amp;&amp; state.selectedPatient.log_history_ids.length > 0">
+                                <ul>
+                                    <t t-foreach="state.selectedPatient.log_history_ids" t-as="log" t-key="log[0]">
+                                        <li>Log at: <t t-esc="log[1]"/></li>
+                                    </t>
+                                </ul>
+                            </t>
+                            <t t-else="">
+                                <span>No log history available</span>
+                            </t>
+                            <p><strong>📍 Status:</strong> <t t-esc="state.selectedPatient.state || 'N/A'"/></p>
+                        </t>
+                        <t t-else="">
+                            <div class="alert alert-warning">No patient selected.</div>
+                        </t>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </t>
+    
+       
+</templates>
