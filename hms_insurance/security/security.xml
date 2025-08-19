@@ -1,0 +1,18 @@
+<odoo>
+    <record id="group_insurance_claim_user" model="res.groups">
+        <field name="name">Insurance Claim User</field>
+        <field name="category_id" ref="hms_base.module_category_hms"/>
+    </record>
+
+    <record id="group_insurance_claim_manager" model="res.groups">
+        <field name="name">Insurance Claim Manager</field>
+        <field name="category_id" ref="hms_base.module_category_hms"/>
+        <field name="implied_ids" eval="[(4, ref('group_insurance_claim_user'))]"/>
+    </record>
+
+    <record id="group_insurance_claim_accountant" model="res.groups">
+        <field name="name">Insurance Claim Accountant</field>
+        <field name="category_id" ref="hms_base.module_category_hms"/>
+        <field name="implied_ids" eval="[(4, ref('group_insurance_claim_user'))]"/>
+    </record>
+</odoo>

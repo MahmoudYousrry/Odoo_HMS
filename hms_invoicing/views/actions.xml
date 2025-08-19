@@ -1,0 +1,21 @@
+<odoo>
+    <record id="action_hms_invoice_list" model="ir.actions.act_window">
+        <field name="name">Patient Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[
+            ('move_type', '=', 'out_invoice'),
+            ('partner_id.is_insurance_company', '!=', True)
+            ]</field>
+    </record>
+
+    <record id="action_insurance_invoices" model="ir.actions.act_window">
+        <field name="name">Insurance Company Invoices</field>
+        <field name="res_model">account.move</field>
+        <field name="view_mode">list,form</field>
+        <field name="domain">[
+            ('move_type', '=', 'out_invoice'),
+            ('partner_id.is_insurance_company', '=', True)
+        ]</field>
+    </record>
+</odoo>

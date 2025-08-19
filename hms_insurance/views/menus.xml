@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <menuitem id="insurance_root_menu"
+                name="Insurance"
+                parent="hms_base.hospital_root_menu"
+                sequence="11"/>
+
+    <menuitem id="insurance_company_menu"
+                name="Companies"
+                parent="insurance_root_menu"
+                action="action_insurance_company"
+                sequence="1"/>
+
+    <menuitem id="menu_insurance_claim"
+                name="Claims"
+                parent="insurance_root_menu"
+                action="action_insurance_claim"
+                sequence="2"/>
+
+</odoo>

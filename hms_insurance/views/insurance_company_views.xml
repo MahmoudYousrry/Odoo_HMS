@@ -1,0 +1,42 @@
+<odoo>
+    <!-- list View -->
+    <record id="view_insurance_company_list" model="ir.ui.view">
+        <field name="name">insurance.company.list</field>
+        <field name="model">insurance.company</field>
+        <field name="arch" type="xml">
+            <list string="Insurance Companies">
+                <field name="partner_insurance_id"/>
+                <field name="coverage_percentage"/>
+                <field name="phone"/>
+                <field name="email"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_insurance_company_form" model="ir.ui.view">
+        <field name="name">insurance.company.form</field>
+        <field name="model">insurance.company</field>
+        <field name="arch" type="xml">
+            <form string="Insurance Company">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_insurance_id"/>
+                        </group>
+                        <group>
+                            <field name="phone" readonly="1"/>
+                            <field name="email" readonly="1"/>
+                            <field name="website" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="coverage_percentage"/>
+                        <field name="payment_journal_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

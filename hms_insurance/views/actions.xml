@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_insurance_company" model="ir.actions.act_window">
+        <field name="name">Insurance Companies</field>
+        <field name="res_model">insurance.company</field>
+        <field name="view_mode">list,form</field>
+    </record>
+    
+    <record id="action_insurance_claim" model="ir.actions.act_window">
+        <field name="name">Insurance Claims</field>
+        <field name="res_model">insurance.claim</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

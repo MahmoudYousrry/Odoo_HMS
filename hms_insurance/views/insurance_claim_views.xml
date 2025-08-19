@@ -1,0 +1,65 @@
+<odoo>
+    <!-- List View -->
+    <record id="view_insurance_claim_list" model="ir.ui.view">
+        <field name="name">insurance.claim.list</field>
+        <field name="model">insurance.claim</field>
+        <field name="arch" type="xml">
+            <list string="Insurance Claims">
+                <field name="name"/>
+                <field name="patient_user_id"/>
+                <field name="invoice_id"/>
+                <field name="insurance_company_id"/>
+                <field name="coverage_percentage"/>
+                <field name="claim_amount"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_insurance_claim_form" model="ir.ui.view">
+        <field name="name">insurance.claim.form</field>
+        <field name="model">insurance.claim</field>
+        <field name="arch" type="xml">
+            <form string="Insurance Claim">
+                <header>
+                    <!-- Workflow Buttons -->
+                    <button name="action_submit" type="object" string="Submit"
+                            invisible="state != 'draft'" class="btn-primary" groups="hms_insurance.group_insurance_claim_user"/>
+                    <button name="action_approve" type="object" string="Approve"
+                            invisible="state != 'submitted'" class="btn-success" groups="hms_insurance.group_insurance_claim_manager"/>
+                    <button name="action_reject" type="object" string="Reject"
+                            invisible="state != 'submitted'" class="btn-danger" groups="hms_insurance.group_insurance_claim_manager"/>
+                    <button name="action_mark_paid" type="object" string="Pay"
+                            invisible="state != 'approved'" class="btn-primary" groups="hms_insurance.group_insurance_claim_accountant"/>
+
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,rejected,paid"/>
+                </header>
+
+                <sheet>
+                    <!-- Sequence Number -->
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="invoice_id"/>
+                        <field name="insurance_company_id" options="{'no_open': True}"/>
+                        <field name="patient_user_id" options="{'no_open': True}"/>
+<!--                        <field name="currency_id" invisible="1"/>-->
+                    </group>
+
+                    <group>
+                        <field name="coverage_percentage" readonly="1"/>
+                        <field name="claim_amount" readonly="1"/>
+                    </group>
+
+                    <group>
+                        <field name="notes"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>
