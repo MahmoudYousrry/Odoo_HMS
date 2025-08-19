@@ -1,0 +1,7 @@
+<odoo>
+
+    <menuitem id="hms_discount_request_menu_root" name="Discount Requests"
+                parent="hms_invoicing.menu_hms_root"
+                action="action_hms_discount_request" sequence="3"/>
+
+</odoo>
