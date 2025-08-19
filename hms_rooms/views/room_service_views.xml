@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hms_room_service_form_view" model="ir.ui.view">
+        <field name="name">room.service.form</field>
+        <field name="model">room.service</field>
+        <field name="arch" type="xml">
+            <form string="Room Service">
+                <div class="oe_title">
+                    <h1><field name="name"/></h1>
+                </div>
+                <sheet>
+                    <group>
+                        <field name="service_name"/>
+                        <field name="service_type"/>
+                        <field name="price"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="hms_room_service_list_view" model="ir.ui.view">
+        <field name="name">room.service.list</field>
+        <field name="model">room.service</field>
+        <field name="arch" type="xml">
+            <list string="Room Services">
+                <field name="service_name"/>
+                <field name="service_type"/>
+                <field name="price"/>
+            </list>
+        </field>
+    </record>
+
+</odoo>

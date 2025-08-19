@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record id="action_hms_room" model="ir.actions.act_window">
+        <field name="name">Rooms</field>
+        <field name="res_model">room</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="action_hms_service" model="ir.actions.act_window">
+        <field name="name">Services</field>
+        <field name="res_model">room.service</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <record id="hms_patient_admission_action" model="ir.actions.act_window">
+        <field name="name">Patient Admissions</field>
+        <field name="res_model">patient.admission</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+</odoo>

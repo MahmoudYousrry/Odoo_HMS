@@ -1,0 +1,9 @@
+<odoo>
+    <record id="seq_room" model="ir.sequence">
+        <field name="name">Room Sequence</field>
+        <field name="code">room.sequence</field>
+        <field name="prefix">ROOM</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

@@ -1,0 +1,20 @@
+{
+    'name': 'Hospital - Room Management',
+    'version': '1.0',
+    'summary': 'Manage hospital rooms, beds, and related services',
+    'depends': ['base','hms_base','hms_patient','hms_clinics','hms_invoicing','hms_appointment'],
+    'data': [
+        'security/ir.model.access.csv',
+        'data/patient_admission_sequence.xml',
+        'data/room_service_sequence.xml',
+        'data/room_sequence.xml',
+        'views/actions.xml',
+        'views/menus.xml',
+        'views/room_views.xml',
+        'views/room_service_views.xml',
+        'views/patient_admission_views.xml',
+        'views/appointment_view.xml',
+    ],
+    'installable': True,
+    'application': True,
+}

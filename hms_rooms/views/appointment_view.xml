@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherit Form View -->
+    <record id="appointment_patient_admission_view_form_inherit" model="ir.ui.view">
+        <field name="name">appointment.view.form.inherit.module</field>
+        <field name="model">appointment</field>
+        <field name="inherit_id" ref="hms_appointment.view_form_appointment"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_open_patient_admission" type="object" string="Create Book Room"
+                            class="btn-primary"
+                            invisible="flag_book_room"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

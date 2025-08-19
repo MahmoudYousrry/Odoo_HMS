@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_room_service" model="ir.sequence">
+            <field name="name">Room Service</field>
+            <field name="code">room.service</field>
+            <field name="prefix">SERV/%(year)s/</field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>

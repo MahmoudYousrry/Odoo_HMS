@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="hms_room_root"
+              name="Rooms"
+              parent="hms_base.hospital_root_menu"
+              sequence="13"
+              groups="hms_base.group_coordinators"/>
+
+    <menuitem id="menu_hms_room"
+              name="Rooms"
+              parent="hms_room_root"
+              action="action_hms_room"
+              sequence="1"/>
+
+
+    <menuitem id="menu_hms_service"
+              name="Services"
+              parent="hms_room_root"
+              action="action_hms_service"
+              sequence="2"/>
+
+    <menuitem id="hms_patient_admissions_menu"
+              name="Patient Admissions"
+              parent="hms_room_root"
+              action="hms_patient_admission_action"
+              sequence="2"/>
+
+
+</odoo>

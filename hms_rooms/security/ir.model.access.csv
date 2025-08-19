@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_room,room,model_room,,1,1,1,1
+access_room_service,room_service_user,model_room_service,,1,1,1,1
+access_hms_patient_admission,hms_patient_admission_user,model_patient_admission,,1,1,1,1

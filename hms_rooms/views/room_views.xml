@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="hms_room_form_view" model="ir.ui.view">
+        <field name="name">room.form</field>
+        <field name="model">room</field>
+        <field name="arch" type="xml">
+            <form string="Room">
+                <header>
+                    <button name="action_set_under_maintenance" type="object" string="Send to Maintenance"
+                            class="btn-warning"
+                            invisible="state != 'available'"/>
+                    <button name="action_set_out_of_service" type="object" string="Set Out of Service"
+                            class="btn-danger"
+                            invisible="state != 'available'"/>
+                    <button name="action_set_available_from_maintenance" type="object" string="Return from Maintenance"
+                            class="btn-success"
+                            invisible="state != 'under_maintenance'"/>
+                    <button name="action_set_available_from_out_of_service" type="object" string="Return to Service"
+                            class="btn-success"
+                            invisible="state != 'out_of_service'"/>
+
+                    <field name="state" widget="statusbar"
+                           statusbar_visible="available,partially_booked,fully_booked,under_maintenance,out_of_service"
+                           readonly="1"/>
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <group>
+                                <field name="clinic_id"/>
+                                <field name="available_beds" readonly="1"/>
+
+                            </group>
+                        </div>
+                        <div class="col-md-6">
+                            <group>
+                                <field name="room_type"/>
+                                <field name="bed_count"/>
+                                <field name="base_hourly_price"/>
+                            </group>
+                        </div>
+                    </div>
+                    <group>
+                        <field name="basic_service_ids" widget="many2many_tags"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- List View -->
+    <record id="hms_room_list_view" model="ir.ui.view">
+        <field name="name">room.list</field>
+        <field name="model">room</field>
+        <field name="arch" type="xml">
+            <list string="Rooms">
+                <field name="name"/>
+                <field name="clinic_id"/>
+                <field name="room_type"/>
+                <field name="state"/>
+            </list>
+        </field>
+    </record>
+</odoo>
